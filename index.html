@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Be My Valentine 💖</title>
+
   <style>
     body {
       height: 100vh;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,6 +18,12 @@
     .container {
       text-align: center;
       position: relative;
+      width: 400px;
+      height: 250px;
+    }
+
+    h1 {
+      margin-bottom: 40px;
     }
 
     button {
@@ -38,23 +46,40 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
     <h1>Will you be my Valentine? 💘</h1>
-    <button id="yes" onclick="alert('Yay!!! ❤️🥰')">Yes</button>
+
+    <button id="yes" onclick="yesClicked()">Yes</button>
     <button id="no">No</button>
   </div>
 
   <script>
     const noBtn = document.getElementById("no");
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 300;
-      const y = Math.random() * 200;
+    function moveButton() {
+      const maxX = 300;
+      const maxY = 150;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
+    }
+
+    // Desktop hover
+    noBtn.addEventListener("mouseover", moveButton);
+
+    // Mobile touch
+    noBtn.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      moveButton();
     });
+
+    function yesClicked() {
+      alert("Yay!!! ❤️🥰 You just made my day!");
+    }
   </script>
 
 </body>
